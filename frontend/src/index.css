@@ -1,0 +1,22 @@
+.menu_style{
+  width: 100%;
+  line-height: 60px;
+  background-color: #20232a;
+  display: flex;
+  justify-content: space-around;
+}
+
+a.active_class{
+  color:blue;
+  border-bottom: 1px solid red;
+}
+
+.login{
+  padding-top: 30px;
+  text-align: center;
+}
+
+.register{
+  padding-top: 30px;
+  text-align: center;
+}

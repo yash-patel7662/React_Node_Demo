@@ -4,7 +4,8 @@ import Login from './Login'
 import Register from './Register'
 import Home from './Home'
 import Dashboard from './Dashboard1'
-import UserDashboard from './userDashboard'
+import UserDashboard from '../src/dashboard/Dashboard'
+import Orders from '../src/dashboard/Orders'
 
 const App = () => {
 
@@ -17,6 +18,7 @@ const App = () => {
         <Route exact path="/register" component={Register} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/userDashboard" component={UserDashboard} />
+        <Route exact path="/orders" component={Orders} />
       </Switch>
     </>
   )

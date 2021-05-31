@@ -277,7 +277,7 @@ const Dashboard = () => {
                     </div>
                 </Drawer>
             </div >
-            <main className={classes.content}>
+            
                 <TableContainer render={Paper}>
                     <Table className={classes.table} aria-label="simple table">
                         <TableHead>
@@ -304,7 +304,7 @@ const Dashboard = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
-            </main>
+            
 
             {/* <Modal isOpen={modalIsOpen}>
                 <button onClick={setModalIsOpenToFalse}>x</button>

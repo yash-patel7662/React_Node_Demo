@@ -21,7 +21,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Alert from '@material-ui/lab/Alert';
+import {Alert} from '@material-ui/lab';
+// import { Alert, Modal } from 'react-bootstrap';
 
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
@@ -71,6 +72,8 @@ const useStyles = makeStyles((theme) => ({
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    // const [show, setShow] = useState(false);
+    // const [error, setError] = useState(null);
 
     const firstEvent = (event, setFunction) => {
         setFunction(event.target.value)
@@ -87,6 +90,20 @@ const Login = () => {
         console.log(data);
     };
 
+    // const onSubmit = (e) => {
+    //     e.preventDefault()
+    //     const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    //     if (!email || !re.test(String(email).toLocaleLowerCase())) {
+    //       setError("Please Check Email");
+    //     }
+    //     else if (password.length < 6) {
+    //       setError("password length must be 6 charcter")
+    //     }
+    //     else {
+    //         LoginUser();
+    //     }
+    //   }
+
     const LoginUser = async () => {
         try {
             const loginData = await axios({
@@ -100,14 +117,18 @@ const Login = () => {
 
             if (loginData.data.code === 200) {
                 if (loginData.data.data.type === "Admin") {
+                    // setShow(true)
+                    // setError(null)
                     history.push('/dashboard')
-                    alert(loginData.data.data.message)
+                    // alert(loginData.data.data.message)
                     // { <div className={classes.root}>< Alert severity="success" > {loginData.data.data.message}</Alert > </div> }
                     logindatafunction(loginData.data.data.token);
                 } else {
                     if (loginData.data.data.type === "User") {
+                        // setShow(true)
+                        // setError(null)
                         history.push('/userDashboard')
-                        alert(loginData.data.data.message)
+                        // alert(loginData.data.data.message)
                         // { <div className={classes.root}>< Alert severity="success" > {loginData.data.data.message}</Alert > </div> }
                         logindatafunction(loginData.data.data.token);
                     }
@@ -119,6 +140,33 @@ const Login = () => {
             { < Alert severity="success" > {e.response.data.data}</Alert > }
         }
     }
+
+    // const ShowError = () => {
+    //     if (show)
+    //       return (
+    
+    //         <Modal
+    //           size="sm"
+    //           show={show}
+    //         >
+    //           <Alert style={{ height: 80 }} variant="success" onClose={() => { setShow(false) }} dismissible>
+    //             <Alert.Heading>Successfully Login </Alert.Heading>
+    //           </Alert>
+    //         </Modal>
+    
+    //       )
+    //     else
+    //       return (
+    //         <div>
+    //           {error ?
+    //             <Alert style={{ height: 80 }} variant={'danger'} onClose={() => { setError(null) }} dismissible>
+    //               <Alert.Heading>{error} </Alert.Heading>
+    //             </Alert> :
+    //             null
+    //           }
+    //         </div>
+    //       )
+    //   }
 
     function logindatafunction(data) {
         window.localStorage.setItem("data", data)
@@ -218,6 +266,7 @@ const Login = () => {
                         <Box mt={8}>
                             <Copyright />
                         </Box>
+                        {/* <ShowError /> */}
                     </Container>
                 </form>
             </div>

@@ -9,7 +9,7 @@ const { ObjectID } = require('mongodb');
 const bcrypt = require('bcrypt')
 const JWT = require('jsonwebtoken')
 require('dotenv').config();
-let { mongoUrl } = process.env;
+let { mongoUrl } = process.env; 
 const axios = require('axios')
 
 
@@ -107,6 +107,7 @@ const login = async (req, res, next) => {
         return next(new APIError(`${e.message}`, httpStatus.BAD_REQUEST, true));
     }
 }
+
 
 module.exports = {
     createUser,

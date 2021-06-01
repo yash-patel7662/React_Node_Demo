@@ -6,7 +6,10 @@ router.route('/createCategory')
     .post(categoryCtrl.createCategory)
 
 router.route('/listAllCategory')
-    .get(categoryCtrl.listAllCategory)
+    .get(categoryCtrl.listAllCategory) 
+
+router.route('/listCategory/:id')
+    .get(categoryCtrl.listCategory) 
 
 router.route('/editCategory/:id')
     .put(categoryCtrl.editCategory)

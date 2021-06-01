@@ -8,6 +8,9 @@ router.route('/createProduct')
 router.route('/listAllProduct')
     .get(productCtrl.listAllProduct)
 
+router.route('/listProduct/:id')
+    .get(productCtrl.listProduct)
+
 router.route('/editProduct/:id')
     .put(productCtrl.editProduct)
 

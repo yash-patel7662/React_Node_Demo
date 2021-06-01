@@ -221,6 +221,10 @@ const Dashboard = () => {
         setOpen(!open);
     };
 
+    const hello = () => {
+        alert("Hello")
+    }
+
     return (
         <>
             <div className={classes.root}>
@@ -259,7 +263,7 @@ const Dashboard = () => {
                             {/* Nested list */}
                             <Collapse in={open} timeout="auto" unmountOnExit>
                                 <List component="div" disablePadding>
-                                    <ListItem button className={classes.nested}>
+                                    <ListItem button className={classes.nested} onClick={hello}>
                                         <ListItemIcon>
                                             <AddIcon />
                                         </ListItemIcon>

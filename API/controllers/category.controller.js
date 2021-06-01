@@ -19,7 +19,7 @@ const createCategory = async (req, res, next) => {
         return next(new APIError(`${e.message}`, httpStatus.BAD_REQUEST, true));
     }
 }
-
+ 
 const listAllCategory = async (req, res, next) => {
     try {
         const allCategory = await categoryColl.find({}).aggregate([
@@ -34,6 +34,17 @@ const listAllCategory = async (req, res, next) => {
             }
         ]).toArray();
         let obj = resPattern.successPattern(httpStatus.OK, allCategory, 'Success');
+        return res.status(obj.code).json(obj);
+    } catch (e) {
+        return next(new APIError(`${e.message}`, httpStatus.BAD_REQUEST, true));
+    }
+}
+
+const listCategory = async (req, res, next) => {
+    try {
+        const categoryId = ObjectID(req.params.id)
+        const oneCategory = await categoryColl.find({_id: categoryId}).toArray();
+        let obj = resPattern.successPattern(httpStatus.OK, oneCategory, 'Success');
         return res.status(obj.code).json(obj);
     } catch (e) {
         return next(new APIError(`${e.message}`, httpStatus.BAD_REQUEST, true));
@@ -77,6 +88,7 @@ const deleteCategory = async (req, res, next) => {
 module.exports = {
     createCategory,
     listAllCategory,
+    listCategory,
     editCategory,
     deleteCategory
 }

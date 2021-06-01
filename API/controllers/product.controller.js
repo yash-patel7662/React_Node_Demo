@@ -40,6 +40,17 @@ const listAllProduct = async (req, res, next) => {
     }
 }
 
+const listProduct = async (req, res, next) => {
+    try {
+        const productId = ObjectID(req.params.id) 
+        const oneProducts = await productColl.find({_id: productId}).toArray();
+        let obj = resPattern.successPattern(httpStatus.OK, oneProducts, 'Success');
+        return res.status(obj.code).json(obj);
+    } catch (e) {
+        return next(new APIError(`${e.message}`, httpStatus.BAD_REQUEST, true));
+    }
+}
+
 const editProduct = async (req, res, next) => {
     try {
         const productId = ObjectID(req.params.id)
@@ -72,11 +83,12 @@ const deleteProduct = async (req, res, next) => {
     } catch (e) {
         return next(new APIError(`${e.message}`, httpStatus.BAD_REQUEST, true));
     }
-}
+} 
 
 module.exports = {
     createProduct,
     listAllProduct,
+    listProduct,
     editProduct,
     deleteProduct
 }

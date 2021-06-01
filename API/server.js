@@ -1,24 +1,3 @@
-// const express = require('express');
-// const app = express()
-// const db = require('./config/database')
-// const bodyParser = require('body-parser')
-// const cors = require('cors')
-// const logger = require('morgan')
-
-// app.use(bodyParser.urlencoded({ limit: '15gb', extended: false }));
-// app.use(bodyParser.json());
-// app.use(cors());
-// app.use(logger('dev'));
-
-// db.connection().then((database) => {
-
-//     module.exports = database;
-//     app.use('/api/user', require('./routes/user.route'))
-
-//     app.listen(8000)
-//     console.log("Server start on port 8000");
-// });
-
 const express = require('express');
 const bodyParser = require('body-parser')
 const db = require('./config/database');
@@ -44,6 +23,7 @@ db.connection().then((database) => {
     app.use('/api/user', require('./routes/user.route'))
     app.use('/api/product', require('./routes/product.route'))
     app.use('/api/category', require('./routes/category.route'))
+    app.use('/api/cart', require('./routes/cart.route'))
 
     app.use((err, req, res, next) => {
         if (err instanceof expressValidation.ValidationError) {
